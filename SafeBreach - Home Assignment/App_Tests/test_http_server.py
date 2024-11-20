@@ -3,7 +3,6 @@ from time import sleep
 import pytest
 import requests
 
-
 class TestHTTPServerManagement:
     def test_start_http_server(self, server_setup):
         url = f"{server_setup}/run_task"
@@ -20,7 +19,7 @@ class TestHTTPServerManagement:
         assert "server_id" in result
 
         first_server_id= result["server_id"]
-        print(first_server_id)
+        #print(first_server_id)
         # Test the running HTTP server
         server_url = f"http://127.0.0.1:55555/test"
         server_response = requests.get(server_url)
@@ -28,34 +27,33 @@ class TestHTTPServerManagement:
         assert server_response.status_code == 200
 
         assert server_response.text == "Hello, World!"
-        print(server_response.text)
-        return first_server_id
+        #print(server_response.text)
 
     def test_list_active_servers(self, server_setup):
         url = f"{server_setup}/active_servers"
         response = requests.get(url)
         assert response.status_code == 200
         result = response.json()
-        print(result)
+        #print(result)
         assert isinstance(result["active_servers"], list)
         assert len(result["active_servers"]) > 0
 
     def test_stop_http_server(self, server_setup):
         url = f"{server_setup}/run_task"
-        print(url)
+        #print(url)
         data = {
             "task_name": "start_http_server",
             "params": {"port": 35674, "page_uri": "/test", "response_data": "Hello, World!"}
         }
         response = requests.post(url, json=data)
-        sleep(5)
+        sleep(3)
         assert response.status_code == 200
         result = response.json()
         print(result["server_id"])
         # Stop the server
         stop_url = f"{server_setup}/stop_server"
         stop_data = {"server_id": result["server_id"] }
-        print(stop_data)
+        #print(stop_data)
         stop_response = requests.post(stop_url, json=stop_data)
         sleep(3)
         stop_result = stop_response.json()
@@ -96,7 +94,7 @@ class TestHTTPServerManagement:
         Test starting the maximum number of HTTP servers (10) and ensure the 11th attempt fails.
         """
         url = f"{server_setup}/run_task"
-        servers = []
+        active_servers = []
 
         # Start the maximum number of servers (10)
         for i in range(11):
@@ -110,15 +108,22 @@ class TestHTTPServerManagement:
             result = response.json()
             assert result["status"] == "success"
             assert "server_id" in result
-            servers.append(result["server_id"])
+            active_servers.append(result["server_id"])
+
 
         # Attempt to start an 11th server
         data_11th = {
             "task_name": "start_http_server",
-            "params": {"port": 8010, "page_uri": "/test10", "response_data": "Server 11"}
+            "params": {"port": 8010, "page_uri": "/test11", "response_data": "Server 11"}
         }
         response_11th = requests.post(url, json=data_11th)
         assert response_11th.status_code == 200
         result_11th = response_11th.json()
         assert result_11th["status"] == "error"
         assert "Cannot create more than 10 servers" in result_11th["message"]
+        #print(active_servers)
+        #servers cleanup at the end of the test
+        for server_id in active_servers:
+            stop_url = f"{server_setup}/stop_server"
+            requests.post(stop_url, json={"server_id": server_id})
+            sleep(3)
