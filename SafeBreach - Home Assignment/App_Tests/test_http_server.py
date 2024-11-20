@@ -58,7 +58,7 @@ class TestHTTPServerManagement:
         sleep(3)
         stop_result = stop_response.json()
         assert stop_response.status_code == 200
-        print(stop_result)
+        #print(stop_result)
         assert result["status"] == "success", "failed stopping server"+ result["message"]
 
     def test_start_http_server_invalid_port(self, server_setup):
