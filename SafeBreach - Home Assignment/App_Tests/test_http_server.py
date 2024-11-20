@@ -15,8 +15,8 @@ class TestHTTPServerManagement:
         sleep(3)
         assert response.status_code == 200
         result = response.json()
-        assert result["status"] == "success", failed creating server
-        assert "server_id" in result, failed creating server
+        assert result["status"] == "success", "failed creating server"
+        assert "server_id" in result, "failed creating server"
 
         first_server_id= result["server_id"]
         #print(first_server_id)
@@ -24,9 +24,9 @@ class TestHTTPServerManagement:
         server_url = f"http://127.0.0.1:55555/test"
         server_response = requests.get(server_url)
 
-        assert server_response.status_code == 200, failed reaching server
+        assert server_response.status_code == 200, "failed reaching created server"
 
-        assert server_response.text == "Hello, World!", failed reaching server
+        assert server_response.text == "Hello, World!", "failed reaching created server"
         #print(server_response.text)
 
     def test_list_active_servers(self, server_setup):
@@ -59,7 +59,7 @@ class TestHTTPServerManagement:
         stop_result = stop_response.json()
         assert stop_response.status_code == 200
         print(stop_result)
-        assert result["status"] == "success", result["message"], , failed stoping server
+        assert result["status"] == "success", "failed stopping server"+ result["message"]
 
     def test_start_http_server_invalid_port(self, server_setup):
         """
