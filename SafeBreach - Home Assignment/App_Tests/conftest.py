@@ -14,7 +14,7 @@ def server_setup(request):
 
     # Start the server in a subprocess
     process = subprocess.Popen(
-        ["python", "Main_API_Initiator.py"],  # Replace `app.py` with your main server file
+        ["python", "Main_API_Initiator.py"], 
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         env={"FLASK_RUN_PORT": port},
@@ -39,7 +39,7 @@ def server_setup(request):
 
 def pytest_addoption(parser):
     """
-    Add custom CLI options to pytest.
+    Add custom Port to run the main API server on.
     """
     parser.addoption(
         "--port", action="store", default="5000", help="Port to run the server on"
