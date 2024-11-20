@@ -46,7 +46,7 @@ class TestHTTPServerManagement:
             "params": {"port": 35674, "page_uri": "/test", "response_data": "Hello, World!"}
         }
         response = requests.post(url, json=data)
-        sleep(3)
+        sleep(5)
         assert response.status_code == 200
         result = response.json()
         print(result["server_id"])
