@@ -3,8 +3,10 @@
 This project is a modular Python-based task management framework featuring:
 
 A Flask API server to interact with clients.
+
 A backend task executor.
-A custom HTTP server manager.
+
+A custom HTTP server creation template.
 
 The system supports:
 DNS queries.
