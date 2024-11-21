@@ -8,7 +8,7 @@ A backend task executor.
 
 A custom HTTP server creation template.
 
-The system supports:
+**The system supports:**
 
 DNS queries.
 
@@ -16,14 +16,14 @@ HTTP GET requests.
 
 Dynamic creation of HTTP servers.
 
-It is extendable, supports parallel task execution, and ensures efficient HTTP servers creation and management, all from a single API server as requested!.
+It is extendable, supports parallel task execution, and ensures efficient HTTP servers creation and management, all from a single API server as requested!
 
 ## Project Structure
 
 **1. Main API Task Initiator Server (Main_API_Initiator.py)**
 This file acts as the entry point for the system and implements a Flask-based REST API.
 
-Key Functionalities of the Endpoints:
+Routing of the Endpoints:
 
 /run_task: Executes a single task based on the provided task name and parameters (e.g., dns_query, http_get, create_http_server_task).
 
@@ -37,7 +37,7 @@ Key Functionalities of the Endpoints:
   
 The Flask server routes incoming API requests to the backend API tasks for processing.
 
-Tasks are executed based on the task name and parameters.
+HTTP related Tasks are executed based on the task name and parameters.
 
 Example Usage
 
