@@ -5,12 +5,12 @@ This project is a modular Python-based task management framework featuring:
 A Flask API server to interact with clients.
 A backend task executor.
 A custom HTTP server manager.
-The system supports:
 
+The system supports:
 DNS queries.
 HTTP GET requests.
 Dynamic creation of HTTP servers.
-It is extendable, supports parallel task execution, and ensures efficient HTTP server management..
+It is extendable, supports parallel task execution, and ensures efficient HTTP servers creation and management, all from a single API server as requested!.
 
 ## Project Structure
 
