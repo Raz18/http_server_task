@@ -9,9 +9,13 @@ A backend task executor.
 A custom HTTP server creation template.
 
 The system supports:
+
 DNS queries.
+
 HTTP GET requests.
+
 Dynamic creation of HTTP servers.
+
 It is extendable, supports parallel task execution, and ensures efficient HTTP servers creation and management, all from a single API server as requested!.
 
 ## Project Structure
