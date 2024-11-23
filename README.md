@@ -6,7 +6,7 @@ A Flask API server to interact with clients.
 
 A backend task executor.
 
-A custom HTTP server creation template.
+A custom HTTP server creation class template.
 
 **The system supports:**
 
