@@ -16,6 +16,10 @@ HTTP GET requests.
 
 Dynamic creation of HTTP servers.
 
+Listing all active http servers.
+
+Stopping an active http server.
+
 It is extendable, supports parallel task execution, and ensures efficient HTTP servers creation and management, all from a single API server as requested!
 
 ## Project Structure
