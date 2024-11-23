@@ -29,7 +29,7 @@ This file acts as the entry point for the system and implements a Flask-based RE
 
 Routing of the Endpoints:
 
-/run_task: Executes a single task based on the provided task name and parameters (e.g., dns_query, http_get, create_http_server_task).
+/run_task: Executes a single task based on the provided task name and parameters (dns_query, http_get, create_http_server_task).
 
 /run_tasks: Executes multiple tasks in parallel and returns results for all.
 
@@ -46,7 +46,7 @@ HTTP related Tasks are executed based on the task name and parameters.
 Example Usage
 
 ```bash
-POST /run_task
+POST {Main_Flask_IP}:{Main_Flask_Port}/run_task
 Content-Type: application/json
 {
   "task_name": "dns_query",
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 ```
 ```bash
-POST /run_tasks
+{Main_Flask_IP}:{Main_Flask_Port}/run_tasks
 Content-Type: application/json
 {
   "tasks": [
